@@ -43,6 +43,7 @@ void validate_input(const char* input, const int n)
 	}
 }
 
+// Note this is NOT the default implementation (there are 2 implementations)
 [[nodiscard]] std::string left_padded_ranges(const char* input, const int n)
 {
 	// up front checks. throws if invalid
@@ -80,6 +81,7 @@ void validate_input(const char* input, const int n)
 	return result;
 }
 
+// Note this IS the default implementation (there are 2 implementations)
 [[nodiscard]] std::string left_padded(const char* input, const int n)
 {
 	// up front checks. throws if invalid
