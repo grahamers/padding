@@ -5,6 +5,19 @@
 #include <ranges>
 #include <cstring>
 
+/* 
+
+Obviously in real life we would be separating code out into classes, declared in .h and implemented in .cxx etc. 
+A "padding" Exception might be defined but std::invalid_argument suffices here. 
+
+The ranges approach "left_padded_ranges" is more elegant and has lazy evaulation. We can discuss but a cleaner way of having to store;
+
+"auto len = result.size();" 
+
+would be cleaner.
+
+*/	
+
 
 void validate_input(const char* input, const int n)
 {
