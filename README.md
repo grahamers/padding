@@ -33,6 +33,17 @@ a) "DONT_RESERVE"  They simply serve to highlight the effect of reserving space 
 
 b) "DONT_COUT" , as it name indicates, we dont cout the result (if we want to use "time" to measure actual padding algorithm.
 
+This will disable the reserve and wont print the result
+
+$ g++ -DDONT_RESERVE -DDONT_COUT  -Wall -Werror -pedantic --std=c++23 -o main ./main.cxx
+
+This will reserve and wont print the result
+
+$ g++ -DDONT_COUT  -Wall -Werror -pedantic --std=c++23 -o main ./main.cxx
+
+The default: (reserve and print)
+
+ 
 $ ./main "James Bond 7" 3
 
 James Bond 007
