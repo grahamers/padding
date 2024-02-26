@@ -81,35 +81,46 @@ $ ./main "99UR1337" 6
 000099UR001337
 
 $ ./main  a  2
+
 *a*
 
 $ ./main  1a  2
+
 *01a*
 
 $ ./main  1a1  2
+
 *01a01*
 
 $ ./main  11  2
+
 *11*
 
 $ ./main  1a11  2
+
 *01a11*
 
 $ ./main  11a11  2
+
 *11a11*
 
 $ ./main  1111a11  2
+
 *1111a11*
 $ ./main  1111a11 4
+
 *1111a0011*
 
 $ ./main  1 20
+
 00000000000000000001
 
 $ ./main  "" 4
+
 *GENERAL EXCEPTION: empty input, check parameters*
 
 $ ./main  1 20000000000000
+
 OUT OF RANGE, check parameters
 
 If we want to see the performance without the call to reserve() on the result string (and also diable printing the result);
@@ -117,6 +128,7 @@ If we want to see the performance without the call to reserve() on the result st
 The following should highlight;
 
 $ g++ -DDONT_RESERVE -DDONT_COUT  -Wall -Werror -pedantic --std=c++23 -o main ./main.cxx
+
 $ time ./main  1 1000000000
 
 real    0m3.395s
