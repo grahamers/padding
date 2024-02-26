@@ -1,19 +1,20 @@
 
 **Implementation**
 
-iterate over the input char* (stored in a string_view). 
-while (iter != end(input)
-{
-   if (!digit(c))
-      result.append(c);
-      update(iter)
-   else
-       find_count_of_subsequent_digits()
-       padding = calculate_count_of_zeros_to_pad // could be zero
-       result.append(padding)
-       result.append(digit)
-       update(iter)
-}
+iterate over the input char* (stored in a string_view) and append to the result as required (padded digits or non digits)
+
+while (iter != end(input)  
+{  
+  &nbsp;if (!digit(c))  
+    &nbsp; &nbsp; result.append(c);  
+     &nbsp; &nbsp; update(iter)  
+   &nbsp; else  
+      &nbsp; &nbsp; find_count_of_subsequent_digits()  
+      &nbsp; &nbsp; padding = calculate_count_of_zeros_to_pad // could be zero  
+      &nbsp; &nbsp; result.append(padding)  
+      &nbsp; &nbsp; result.append(digit)  
+      &nbsp; &nbsp; update(iter)  
+}  
 
 **Build:**
 $  g++ --version
