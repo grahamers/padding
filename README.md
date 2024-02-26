@@ -1,5 +1,5 @@
 
-**Implementation**
+**Implementation:**
 
 iterate over the input char* (stored in a string_view) and append to the result as required (padded digits or non digits)
 
@@ -86,5 +86,5 @@ sys     0m0.433s
 
 
 
-The solution has time complexity and space complexity:
+**Time complexity & space complexity:**
 
