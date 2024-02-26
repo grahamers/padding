@@ -67,7 +67,7 @@ void validate_input(const char* input, const int n)
 	return result;
 }
 
-std::string left_padded(const char* input, const int n)
+[[nodiscard]] std::string left_padded(const char* input, const int n)
 {
 	// up front checks. throws if invalid
 	validate_input(input, n);
