@@ -16,6 +16,11 @@ while (iter != end(input)
       &nbsp; &nbsp; update(iter)  
 }  
 
+**NOTE:**
+
+There are two implementations, the first "left_padded" (above pseudo code) and a second "left_padded_ranges" which uses c++ 20 views/ranges. The default is
+"left_padded" as described above. 
+
 **Build:**
 $  g++ --version
 *g++ (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0*
