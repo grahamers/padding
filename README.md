@@ -34,6 +34,14 @@ a) "DONT_RESERVE"  They simply serve to highlight the effect of reserving space 
 b) "DONT_COUT" , as it name indicates, we dont cout the result (if we want to use "time" to measure actual padding algorithm.
 
 
+$ ./main "7James Bond 07" 3
+
+007James Bond 007
+
+$ ./main "7James7Bond 07" 3
+
+007James007Bond 007
+
 $ ./main  a  2
 *a*
 
