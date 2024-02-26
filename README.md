@@ -1,6 +1,19 @@
-# padding
-padding implementation
 
+**Implementation**
+
+iterate over the input char* (stored in a string_view). 
+while (iter != end(input)
+{
+   if (!digit(c))
+      result.append(c);
+      update(iter)
+   else
+       find_count_of_subsequent_digits()
+       padding = calculate_count_of_zeros_to_pad // could be zero
+       result.append(padding)
+       result.append(digit)
+       update(iter)
+}
 
 **Build:**
 $  g++ --version
