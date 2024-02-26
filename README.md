@@ -139,6 +139,7 @@ sys     0m3.021s
 
 
 $ g++  -DDONT_COUT  -Wall -Werror -pedantic --std=c++23 -o main ./main.cxx
+
 $ time ./main  1 1000000000
 
 real    0m0.555s
