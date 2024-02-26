@@ -49,11 +49,7 @@ $ ./main "James Bond 7" 3
 
 James Bond 007
 
-$ ./main "7James Bond 07" 3
-
-007James Bond 007
-
-./main "James Bond 07" 3
+$ ./main "James Bond 07" 3
 
 James Bond 007
 
