@@ -55,7 +55,7 @@ void validate_input(const char* input, const int n)
 	auto is_digit = [] (const char& c) -> bool { return std::isdigit(c);}; 
 	auto is_not_digit = [] (const char& c) -> bool { return !std::isdigit(c);}; 
 
-	std::cout << "sv.size() " << sv.size() << std::endl;
+	// std::cout << "sv.size() " << sv.size() << std::endl;
 
 	while (offset < sv.size())
 	{
