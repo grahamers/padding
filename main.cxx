@@ -46,39 +46,43 @@ void validate_input(const char* input, const int n)
 // Note this is NOT the default implementation (there are 2 implementations)
 [[nodiscard]] std::string left_padded_ranges(const char* input, const int n)
 {
-	// up front checks. throws if invalid
-	validate_input(input, n);
+   // up front checks. throws if invalid
+   validate_input(input, n);
 
-	std::string result;
-	std::string_view sv(input);
-	size_t offset{0};
-	auto is_digit = [] (const char& c) -> bool { return std::isdigit(c);}; 
-	auto is_not_digit = [] (const char& c) -> bool { return !std::isdigit(c);}; 
+	
+   std::string result;
+   #ifndef DONT_RESERVE
+   // wouldn't normally put #ifdefs like this in code. 
+   // minimise impact of push_back reallocations for large 'n'
+   result.reserve(std::strlen(input)  + n);
+   #endif
+	
+   std::string_view sv(input);
+   size_t offset{0};
+   auto is_digit = [] (const char& c) -> bool { return std::isdigit(c);};
+   auto is_not_digit = [] (const char& c) -> bool { return !std::isdigit(c);};
 
-	// std::cout << "sv.size() " << sv.size() << std::endl;
 
-	while (offset < sv.size())
-	{
-		// non digits
-		auto len = result.size();
-		std::ranges::copy(sv | std::ranges::views::drop(offset) 
-				| std::ranges::views::take_while(is_not_digit), 
-				std::back_inserter(result));
-		// update the offset as thats how many items in input string_view we will be dropping
-		offset += result.size() - len;
+   while (offset < sv.size())
+   {
+      // non digits
+      std::ranges::copy(sv | std::ranges::views::drop(offset)
+            | std::ranges::views::take_while(is_not_digit)
+            | std::ranges::views::transform([&offset] (char c) { ++offset; return c;}),
+            std::back_inserter(result));
 
-		auto v = sv | std::ranges::views::drop(offset) | std::views::take_while(is_digit); 
-		auto dist = std::ranges::distance(v);
+      auto dist = std::ranges::distance(sv | std::ranges::views::drop(offset) | std::views::take_while(is_digit));
 
-		// only append if there are digits to append
-		result.append(dist && (n - dist > 0) ? n-dist : 0 , '0');
-		result.append(sv, offset, dist); 
 
-		// update the offset for next iteration
-		offset+=dist;
-	}
+      // only append if there are digits to append
+      result.append(dist && (n - dist > 0) ? n-dist : 0 , '0');
+      result.append(sv, offset, dist);
 
-	return result;
+      // update the offset for next iteration
+      offset+=dist;
+   }
+
+   return result;
 }
 
 // Note this IS the default implementation (there are 2 implementations)
