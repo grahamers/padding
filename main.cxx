@@ -51,11 +51,9 @@ void validate_input(const char* input, const int n)
 
 	
    std::string result;
-   #ifndef DONT_RESERVE
-   // wouldn't normally put #ifdefs like this in code. 
-   // minimise impact of push_back reallocations for large 'n'
+	
    result.reserve(std::strlen(input)  + n);
-   #endif
+   
 	
    std::string_view sv(input);
    size_t offset{0};
