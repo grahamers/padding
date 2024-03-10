@@ -44,9 +44,10 @@ while (iter  != end(input)\
 }  
 
 
-I was happy enough with that approach (time and space complexity are fine). This translates to the following code;
+I was happy enough with that approach however the code backing it is clunky (first_non_digit_loc and dist). 
 
-![approach_1](https://github.com/grahamers/padding/assets/19392728/946b2a2b-0093-4ad0-a69e-dfa4673005bf)
+![image](https://github.com/grahamers/padding/assets/19392728/882d21f0-fcaf-4bb2-a5fd-4c61c66a0ce4)
+
 
 **NOTE:**
 
