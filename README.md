@@ -2,7 +2,7 @@
 
 The code here presents an illustration of the evolution of a solution to a "padding" problem. The first implemention could
 possibly be termed the "reflex" approach. On top of that a second approach is provided using C++ 20 "ranges". Finally a third solution is coded illustrating
-the power of ranges and how code is impacted. The final range based solution is by far the cleanest, most readable and modern.
+the power of ranges and how code is impacted. The final range based solution is by far the cleanest, most readable and modern. 
 
 <ins>**Task**</ins>
 
@@ -24,26 +24,29 @@ etc.
 Iterate over the input using "iter".  
 
 Search for sequence of non digits (STL find_if + lambda), append this directly to output. 
-Search for sequence of digits (find_if + lambda). Using offsets and std::distance between iteratsors, calculate the padding (if any) required. 
+Search for sequence of digits (find_if + lambda). Using offsets and std::distance between iterators, calculate the padding (if any) required. 
 Append (possibly zero) padding to result.
 Append digits to result.
 
 
-The following pseudo code describes;
+The following pseudo code describes the first approach;
 
 
 while (iter  != end(input)\
 {\
-  &nbsp;c  = *iter;   
-  &nbsp;if (!digit(c))  
-    &nbsp; &nbsp; result.append(c);   
-   &nbsp; else  
-      &nbsp; &nbsp; digit_count = count_subsequent_digits()  
-      &nbsp; &nbsp; padding = calculate_count_of_zeros_to_pad(digit_count) // could be zero  
-      &nbsp; &nbsp; result.append(padding)  
-      &nbsp; &nbsp; result.append(digit)  
-      &nbsp; &nbsp; update(iter)  
+  &nbsp; append_non_digits_to_result;\
+  &nbsp;  update iter;\
+  &nbsp; digit_count = count_subsequent_digits()  
+  &nbsp; padding = calculate_count_of_zeros_to_pad(digit_count) // could be zero  
+  &nbsp; result.append(padding)  
+  &nbsp; result.append(digits)  
+  &nbsp; update(iter)  
 }  
+
+
+I was happy enough with that approach (time and space complexity are fine). This translates to the following code;
+
+![approach_1](https://github.com/grahamers/padding/assets/19392728/946b2a2b-0093-4ad0-a69e-dfa4673005bf)
 
 **NOTE:**
 
