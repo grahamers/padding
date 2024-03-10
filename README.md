@@ -1,16 +1,45 @@
+<ins>**Overview**</ins>
 
-**Implementation:**
+The code here presents an illustration of the evolution of a solution to a "padding" problem. The first implemention could
+possibly be termed the "reflex" approach. On top of that a second approach is provided using C++ 20 "ranges". Finally a third solution is coded illustrating
+the power of ranges and how code is impacted. The final range based solution is by far the cleanest, most readable and modern.
 
-iterate over the input char* (stored in a string_view) and append to the result as required (padded digits or non digits)
+<ins>**Task**</ins>
 
-while (iter != end(input)  
-{  
+Provide a "padding" function that will pad (prefix) a string to N chars such that any sequence of numeric digits is at least N
+digits long, any sequences will be padded with zeros. 
+
+e.g. \
+N = 3, input "1" -> "001"\
+N = 4, input "1" -> "0001"\
+N = 3, input "x" -> "x"\
+N = 2, input "1a8" -> "01a08"\
+etc.
+
+
+
+
+**First Implementation:**
+
+Iterate over the input using "iter".  
+
+Search for sequence of non digits (STL find_if + lambda), append this directly to output. 
+Search for sequence of digits (find_if + lambda). Using offsets and std::distance between iteratsors, calculate the padding (if any) required. 
+Append (possibly zero) padding to result.
+Append digits to result.
+
+
+The following pseudo code describes;
+
+
+while (iter  != end(input)\
+{\
+  &nbsp;c  = *iter;   
   &nbsp;if (!digit(c))  
-    &nbsp; &nbsp; result.append(c);  
-     &nbsp; &nbsp; update(iter)  
+    &nbsp; &nbsp; result.append(c);   
    &nbsp; else  
-      &nbsp; &nbsp; find_count_of_subsequent_digits()  
-      &nbsp; &nbsp; padding = calculate_count_of_zeros_to_pad // could be zero  
+      &nbsp; &nbsp; digit_count = count_subsequent_digits()  
+      &nbsp; &nbsp; padding = calculate_count_of_zeros_to_pad(digit_count) // could be zero  
       &nbsp; &nbsp; result.append(padding)  
       &nbsp; &nbsp; result.append(digit)  
       &nbsp; &nbsp; update(iter)  
