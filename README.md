@@ -24,7 +24,7 @@ etc.
 Iterate over the input using "iter".  
 
 Search for sequence of non digits (STL find_if + lambda), append this directly to output. 
-Search for sequence of digits (find_if + lambda). Using offsets and std::distance between iterators, calculate the padding (if any) required. 
+Then search for sequence of digits (find_if + another lambda). Using offsets and std::distance between iterators, calculate the padding (if any) required. 
 Append (possibly zero) padding to result.
 Append digits to result.
 
@@ -35,7 +35,6 @@ The following pseudo code describes the first approach;
 while (iter  != end(input)\
 {\
   &nbsp; append_non_digits_to_result;\
-  &nbsp;  update iter;\
   &nbsp; digit_count = count_subsequent_digits()  
   &nbsp; padding = calculate_count_of_zeros_to_pad(digit_count) // could be zero  
   &nbsp; result.append(padding)  
