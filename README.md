@@ -48,6 +48,8 @@ I was happy enough with that approach however the code backing it is clunky (fir
 ![image](https://github.com/grahamers/padding/assets/19392728/882d21f0-fcaf-4bb2-a5fd-4c61c66a0ce4)
 
 
+**Second Implementation:**
+
 **NOTE:**
 
 There are two implementations, the first "left_padded" (above pseudo code) and a second "left_padded_ranges" which uses c++ 20 views/ranges. The default is
