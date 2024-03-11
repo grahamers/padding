@@ -155,7 +155,7 @@ $ ./main  1 20\
 
 $ ./main  "" 4
 
-*GENERAL EXCEPTION: empty input, check parameters*
+*GENERAL EXCEPTION: empty input, check parameters* // note this is deliberate.
 
 $ ./main  1 20000000000000
 
