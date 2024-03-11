@@ -75,7 +75,7 @@ digit characters from input sequence, copying them to the output result and upda
 
 
 Then we handle digits, again ranges (via offset) give us a "view" of the subsequent sequence of digits. The count of these digits
-will be used to determine padding (std::distance).
+will be used to determine padding (std::ranges::distance).
 
 ![image](https://github.com/grahamers/padding/assets/19392728/02199ad0-6167-46f1-a928-f8890e571da7)
 
