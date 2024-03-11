@@ -1,7 +1,7 @@
 <ins>**Overview**</ins>
 
 The code here presents an illustration of the evolution of a solution to a "padding" problem. The first implemention could
-possibly be termed the "reflex" approach. On top of that a second approach is provided using C++ 20 "ranges". Finally a third solution is coded illustrating
+possibly be termed the "reflex" approach. On top of that a second approach is provided using C++ 20 "ranges" which illustrates
 the power of ranges and how code is impacted. The final range based solution is by far the cleanest, most readable and modern. 
 
 <ins>**Task**</ins>
