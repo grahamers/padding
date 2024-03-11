@@ -50,100 +50,104 @@ I was happy enough with that approach however the code backing it is clunky (fir
 
 **Second Implementation:**
 
+Here, we let ranges do most of the work for us. Again, use offsets (to point to "current" item in input string).
+
+pseudo code:
+
+while (offset < input.size())\
+{\
+  &nbsp; take_view_of_non_digits_from_input_sequence_and_copy_to_output;\
+  &nbsp; determine_padding_by_taking_view_of_digits_in_input 
+  &nbsp; result.append(padding)  
+  &nbsp; result.append(digits)  
+  &nbsp; update(offset)  
+}  
+
+![image](https://github.com/grahamers/padding/assets/19392728/9b993261-e2e9-41b0-8547-4a55e689eec7)
+
+Ranges help us out here in 2 places;
+
+Here, in a single line of code (albeit split over 4 lines for readability, we are taking a view of all non
+digit characters from input sequence, copying them to the output result and updating the offset via transform.
+
+![image](https://github.com/grahamers/padding/assets/19392728/051e4e16-25ad-448c-bc66-bed51385cefe)
+
+
+
+Then we handle digits, again ranges (via offset) give us a "view" of the subsequent sequence of digits. The count of these digits
+will be used to determine padding (std::distance).
+
+![image](https://github.com/grahamers/padding/assets/19392728/02199ad0-6167-46f1-a928-f8890e571da7)
+
+
+After that, its simply a matter of appending the padding and digits and updating the offset.
+
+
+![image](https://github.com/grahamers/padding/assets/19392728/5301720a-b5eb-436a-968c-b42b7344f7bf)
+
+
 **NOTE:**
 
 There are two implementations, the first "left_padded" (above pseudo code) and a second "left_padded_ranges" which uses c++ 20 views/ranges. The default is
 "left_padded" as described above. 
 
 **Build:**
+
 $  g++ --version
-*g++ (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0*
+*g++ (Ubuntu 13.1.0-8ubuntu1~22.04) 13.1.0*
 
 $ g++ -Wall -Werror -pedantic --std=c++23 -o main ./main.cxx
 
-There are 2 #ifndefs in code, simply to enable "time" for simple benchmark. By default just compile as above.
-
-a) "DONT_RESERVE"  They simply serve to highlight the effect of reserving space in the output result (string). If n is very large, not calling "reserve()" on result up front has a significant performance impact.
-
-b) "DONT_COUT" , as it name indicates, we dont cout the result (if we want to use "time" to measure actual padding algorithm.
-
-This will disable the reserve and wont print the result
-
-$ g++ -DDONT_RESERVE -DDONT_COUT  -Wall -Werror -pedantic --std=c++23 -o main ./main.cxx
-
-This will reserve and wont print the result
-
-$ g++ -DDONT_COUT  -Wall -Werror -pedantic --std=c++23 -o main ./main.cxx
-
-The default: (reserve and print)
-
-**Tests:**
  
-$ ./main "James Bond 7" 3
-
+$ ./main "James Bond 7" 3\
 James Bond 007
 
-$ ./main "James Bond 07" 3
-
+$ ./main "James Bond 07" 3\
 James Bond 007
 
-$ ./main "James Bond 007" 3
-
+$ ./main "James Bond 007" 3\
 James Bond 007
 
-$ ./main "7James7Bond 07" 3
-
+$ ./main "7James7Bond 07" 3\
 007James007Bond 007
 
-$ ./main "PI=3.14" 2
-
+$ ./main "PI=3.14" 2\
 PI=03.14
 
-$ ./main "It's 3:13pm" 2
-
+$ ./main "It's 3:13pm" 2\
 It's 03:13pm
 
-$ ./main "It's 12:13pm" 2
-
+$ ./main "It's 12:13pm" 2\
 It's 12:13pm
 
-$ ./main "99UR1337" 6
-
+$ ./main "99UR1337" 6\
 000099UR001337
 
-$ ./main  a  2
+$ ./main  a  2\
+a
 
-*a*
+$ ./main  1a  2\
+01a
 
-$ ./main  1a  2
+$ ./main  1a1  2\
+01a01
 
-*01a*
+$ ./main  11  2\
+11
 
-$ ./main  1a1  2
+$ ./main  1a11  2\
+01a11
 
-*01a01*
+$ ./main  11a11  2\
+11a11
 
-$ ./main  11  2
+$ ./main  1111a11  2\
+1111a11
 
-*11*
+$ ./main  1111a11 4\
+1111a0011
 
-$ ./main  1a11  2
-
-*01a11*
-
-$ ./main  11a11  2
-
-*11a11*
-
-$ ./main  1111a11  2
-
-*1111a11*
-$ ./main  1111a11 4
-
-*1111a0011*
-
-$ ./main  1 20
-
+$ ./main  1 20\
 00000000000000000001
 
 $ ./main  "" 4
@@ -154,33 +158,4 @@ $ ./main  1 20000000000000
 
 OUT OF RANGE, check parameters
 
-If we want to see the performance without the call to reserve() on the result string (and also diable printing the result);
 
-The following should highlight;
-
-$ g++ -DDONT_RESERVE -DDONT_COUT  -Wall -Werror -pedantic --std=c++23 -o main ./main.cxx
-
-$ time ./main  1 1000000000
-
-real    0m3.395s
-
-user    0m0.374s
-
-sys     0m3.021s
-
-
-$ g++  -DDONT_COUT  -Wall -Werror -pedantic --std=c++23 -o main ./main.cxx
-
-$ time ./main  1 1000000000
-
-real    0m0.555s
-
-user    0m0.121s
-
-sys     0m0.433s
-
-
-
-**Time complexity & space complexity:**
-
-We can discuss. 
