@@ -86,10 +86,13 @@ After that, its simply a matter of appending the padding and digits and updating
 ![image](https://github.com/grahamers/padding/assets/19392728/5301720a-b5eb-436a-968c-b42b7344f7bf)
 
 
-**NOTE:**
+A third solution is possible (without ranges) using regex. 
 
-There are two implementations, the first "left_padded" (above pseudo code) and a second "left_padded_ranges" which uses c++ 20 views/ranges. The default is
-"left_padded" as described above. 
+Match digit and non digit sequences using a sregex_iterator. Add padding to all matches that 
+are digit sequences of length < N.
+
+![image](https://github.com/grahamers/padding/assets/19392728/fbed0dda-a547-4f6b-8832-f92025ad13dd)
+
 
 **Build:**
 
